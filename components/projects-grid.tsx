@@ -1,22 +1,40 @@
 "use client"
 
-import { useState} from "react"
-import Image from "next/image"
+import { useState } from "react"
+import Image, { StaticImageData } from "next/image"
 import { cn } from "@/lib/utils"
 import { Github, Star, GitFork, ExternalLink, Sparkles } from "lucide-react"
 import Misa from "@/public/Misa.png"
 import listify from "@/public/listify .png"
-import lumina from "@/public/lumina.png"
+import Lumina from "@/public/lumina.png"
 import Dashboard from "@/public/Dashboard.png"
 import Aristiec from "@/public/Aristiec.png"
 import Nft from "@/public/Nft.png"
 
-const projects = [
+type ProjectStatus = "shipped" | "in-progress" | "archived"
+
+interface Project {
+  id: string
+  title: string
+  description: string
+  image: StaticImageData
+  tags: string[]
+  status: ProjectStatus
+  year: string
+  stars: number
+  forks: number
+  url: string
+  homepage?: string
+  featured?: boolean
+  highlight?: boolean
+}
+
+const projects: Project[] = [
   {
-    id: 0,
+    id: "masa",
     title: "MASA Web Application",
     description:
-      "E-commerce platform for skincare and perfume products. Implemented product catalog with advanced filtering, search functionality, and seamless payment integration.",
+      "E-commerce platform for skincare and perfume products with advanced filtering, search functionality, and seamless payment integration.",
     image: Misa,
     tags: ["React", "Tailwind CSS", "REST APIs", "Payment Gateway"],
     status: "shipped",
@@ -24,32 +42,30 @@ const projects = [
     stars: 12,
     forks: 2,
     url: "https://github.com/Abrahamalejolowo",
-    // homepage: "https://listify-gilt.vercel.app",
     featured: true,
     highlight: true,
   },
-    {
-    id: 1,
-    title: "Dashboard",
-   description:
-      "Modern responsive company website showcasing services and products. Focused on UI/UX improvements, SEO optimization, and cross-browser compatibility.",
+  {
+    id: "dashboard",
+    title: "Analytics Dashboard",
+    description:
+      "Modern responsive dashboard with data visualization, API integration, and performance optimization.",
     image: Dashboard,
-    tags: ["TypeScript", "Next.js", "Tailwind CSS", "Chart.js", "Api"],
+    tags: ["Next.js", "TypeScript", "Tailwind", "Chart.js"],
     status: "shipped",
     year: "2025",
     stars: 8,
     forks: 1,
-    url: "https://github.com/Abrahamalejolowo/dashboard.git",
-     homepage: "https://dashboard-psi-five-0mrfdhh37b.vercel.app/",
-    featured: false,
+    url: "https://github.com/Abrahamalejolowo/dashboard",
+    homepage: "https://dashboard-psi-five-0mrfdhh37b.vercel.app/",
   },
   {
-    id: 2,
+    id: "nft-marketplace",
     title: "NFT Marketplace",
     description:
-      "Decentralized digital asset trading platform with NFT minting, smart contracts, and cryptocurrency payments. Implemented lazy minting reducing gas fees by 35%.",
+      "Decentralized NFT trading platform with minting, smart contracts, and crypto payments. Implemented lazy minting to reduce gas fees.",
     image: Nft,
-    tags: ["Web3.js", "React", "Smart Contracts", "Ethereum", "Firebase"],
+    tags: ["Web3.js", "Ethereum", "Smart Contracts", "Firebase"],
     status: "shipped",
     year: "2024",
     stars: 15,
@@ -58,217 +74,154 @@ const projects = [
     featured: true,
   },
   {
-    id: 3,
+    id: "aristiec",
     title: "Aristiec Company Website",
     description:
-      "Modern responsive company website showcasing services and products. Focused on UI/UX improvements, SEO optimization, and cross-browser compatibility.",
+      "SEO-optimized company website focused on UI/UX, accessibility, and cross-browser compatibility.",
     image: Aristiec,
-    tags: ["React.js", "Tailwind CSS", "Figma", "SEO"],
+    tags: ["React", "Tailwind", "SEO", "Figma"],
     status: "shipped",
     year: "2025",
     stars: 8,
     forks: 2,
     url: "https://github.com/Abrahamalejolowo",
     homepage: "https://aristiec-web-phi.vercel.app/",
-    featured: false,
   },
-    {
-    id: 4,
-    title: "Listify - To-Do List App",
+  {
+    id: "listify",
+    title: "Listify - Task Manager",
     description:
-      "Feature-rich task management application with real-time syncing, task prioritization, and smart reminders. Optimized database queries reducing load times by 40%.",
+      "Real-time task management app with smart reminders and optimized database queries for improved performance.",
     image: listify,
-    tags: ["React", "Firebase", "Tailwind CSS", "API"],
+    tags: ["React", "Firebase", "Tailwind", "API"],
     status: "shipped",
     year: "2024",
     stars: 18,
     forks: 5,
-    url: "https://github.com/Abrahamalejolowo/react-project.git",
+    url: "https://github.com/Abrahamalejolowo/react-project",
     homepage: "https://listify-gilt.vercel.app",
     featured: true,
   },
-    {
-    id: 4,
-    title:"Lumina",
+  {
+    id: "lumina",
+    title: "Lumina E-Commerce",
     description:
-      "A modern e-commerce web app designed to provide a seamless shopping experience with a clean UI and intuitive navigation.",
-    image: lumina,
-    tags: ["React", "Firebase", "Tailwind CSS", "JWT Auth"],
+      "Modern e-commerce application designed for seamless shopping experience with clean UI and secure authentication.",
+    image: Lumina,
+    tags: ["React", "Firebase", "Tailwind", "JWT"],
     status: "shipped",
     year: "2023",
-    stars: 18,
-    forks: 5,
-    url: "https://github.com/Abrahamalejolowo/lumina.git",
+    stars: 10,
+    forks: 3,
+    url: "https://github.com/Abrahamalejolowo/lumina",
     homepage: "https://lumina-p.netlify.app/",
     featured: true,
   },
- 
-  
 ]
 
-// const filters = ["all", "shipped", "in-progress", "archived"]
-
 export function ProjectsGrid() {
-  const [activeFilter, setActiveFilter] = useState("all")
+  const [activeFilter] = useState<ProjectStatus | "all">("all")
 
-  const filteredProjects = activeFilter === "all" ? projects : projects.filter((p) => p.status === activeFilter)
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((p) => p.status === activeFilter)
 
   return (
-    <section id="projects" className="px-4 sm:px-6 py-20 sm:py-28">
+    <section id="projects" className="px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 sm:mb-14 flex flex-col gap-6 sm:gap-8 sm:flex-row sm:items-end sm:justify-between">
-          <div className="space-y-3 animate-fade-in-up">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] sm:tracking-[0.35em] text-primary">Artifacts</p>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Open Source Projects</h2>
-          </div>
-{/* 
-          <div className="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible sm:flex-wrap scrollbar-hide animate-fade-in-up stagger-2">
-            {filters.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={cn(
-                  "shrink-0 rounded-lg border px-5 py-2.5 font-mono text-xs uppercase tracking-wider transition-all duration-300 active:scale-[0.98]",
-                  activeFilter === filter
-                    ? "border-primary bg-primary/15 text-primary shadow-sm shadow-primary/20"
-                    : "border-border text-muted-foreground hover:border-foreground/50 hover:text-foreground hover:bg-secondary/50",
-                )}
-              >
-                {filter}
-              </button>
-            ))}
-          </div> */}
+        <div className="mb-14">
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-primary">
+            Artifacts
+          </p>
+          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">
+            Open Source Projects
+          </h2>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project, index) => (
-            <article
+            <div
               key={project.id}
               className={cn(
-                "group relative overflow-hidden rounded-xl border bg-card/40 p-6 sm:p-7 glass transition-all duration-400 active:scale-[0.99] hover-lift hover:border-primary/40 hover:bg-card/70 animate-fade-in-up",
-                "highlight" in project && project.highlight
-                  ? "sm:col-span-2 lg:col-span-2 border-primary/30 bg-gradient-to-br from-primary/8 via-card/50 to-primary/8"
-                  : "border-border/60",
-                project.featured && !("highlight" in project && project.highlight) && "sm:col-span-2 lg:col-span-1",
+                "group relative overflow-hidden rounded-xl border bg-card/50 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg",
+                project.highlight && "sm:col-span-2"
               )}
-              style={{ animationDelay: `${(index % 6) * 100 + 200}ms` }}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Project Image */}
-              {"image" in project && project.image && (
-                <div className="mb-5 -mx-6 -mt-6 overflow-hidden rounded-t-lg">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={600}
-                    height={400}
-                    className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+              {project.highlight && (
+                <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs text-primary">
+                  <Sparkles className="h-3 w-3" />
+                  Featured
                 </div>
               )}
 
-              {"highlight" in project && project.highlight && (
-                <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-3.5 py-1.5 animate-pulse-glow z-10">
-                  <Sparkles className="h-3.5 w-3.5 text-primary" />
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-primary font-medium">
-                    Featured
-                  </span>
-                </div>
-              )}
-
-              {/* Status indicator */}
-              <div
-                className={cn(
-                  "absolute right-5 top-5 flex items-center gap-2.5",
-                  "highlight" in project && project.highlight && "top-5",
-                )}
-              >
-                <span
-                  className={cn(
-                    "h-2.5 w-2.5 rounded-full transition-shadow duration-300",
-                    project.status === "shipped" && "bg-primary shadow-sm shadow-primary/50",
-                    project.status === "in-progress" && "bg-yellow-500 animate-pulse shadow-sm shadow-yellow-500/50",
-                    project.status === "archived" && "bg-muted-foreground",
-                  )}
+              <div className="mb-5 overflow-hidden rounded-lg">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <span className="font-mono text-xs text-muted-foreground">{project.status}</span>
               </div>
 
-              <div
-                className={cn(
-                  "mb-5 font-mono text-xs text-muted-foreground",
-                  "highlight" in project && project.highlight && "mt-10",
-                )}
-              >
+              <p className="text-xs font-mono text-muted-foreground mb-2">
                 {project.year}
-              </div>
+              </p>
 
-              <h3
-                className={cn(
-                  "mb-3 font-bold tracking-tight transition-all duration-300 group-hover:text-gradient",
-                  "highlight" in project && project.highlight ? "text-xl sm:text-2xl" : "text-lg sm:text-xl",
-                )}
-              >
+              <h3 className="text-xl font-semibold mb-2">
                 {project.title}
               </h3>
 
-              <p
-                className={cn(
-                  "mb-5 text-sm leading-relaxed text-muted-foreground",
-                  "highlight" in project && project.highlight ? "line-clamp-3" : "line-clamp-2",
-                )}
-              >
+              <p className="text-sm text-muted-foreground mb-4">
                 {project.description}
               </p>
 
-              <div className="mb-5 flex items-center gap-5 font-mono text-xs text-muted-foreground">
-                <span className="flex items-center gap-1.5 transition-colors group-hover:text-yellow-500">
-                  <Star className="h-3.5 w-3.5" />
+              <div className="flex gap-4 text-xs font-mono text-muted-foreground mb-4">
+                <span className="flex items-center gap-1">
+                  <Star className="h-3 w-3" />
                   {project.stars}
                 </span>
-                <span className="flex items-center gap-1.5 transition-colors group-hover:text-foreground">
-                  <GitFork className="h-3.5 w-3.5" />
+                <span className="flex items-center gap-1">
+                  <GitFork className="h-3 w-3" />
                   {project.forks}
                 </span>
               </div>
 
-              <div className="mb-5 flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-md border border-border/80 bg-secondary/60 px-2.5 py-1 font-mono text-xs text-secondary-foreground transition-colors hover:border-primary/50 hover:bg-primary/10"
+                    className="rounded-md border px-2 py-1 text-xs"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex gap-4 text-xs font-mono">
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 font-mono text-xs text-muted-foreground hover:text-primary transition-all duration-300 group/link"
-                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center gap-1 hover:text-primary"
                 >
-                  <Github className="h-4 w-4 transition-transform group-hover/link:scale-110" />
-                  <span className="underline-animate">source</span>
+                  <Github className="h-4 w-4" />
+                  Source
                 </a>
+
                 {project.homepage && (
                   <a
                     href={project.homepage}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 font-mono text-xs text-primary hover:text-foreground transition-all duration-300 group/link"
-                    onClick={(e) => e.stopPropagation()}
+                    className="flex items-center gap-1 text-primary hover:text-foreground"
                   >
-                    <ExternalLink className="h-4 w-4 transition-transform group-hover/link:scale-110 group-hover/link:rotate-12" />
-                    <span className="underline-animate">live</span>
+                    <ExternalLink className="h-4 w-4" />
+                    Live
                   </a>
                 )}
               </div>
-
-              <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-primary via-primary/80 to-transparent transition-all duration-500 group-hover:w-full" />
-            </article>
+            </div>
           ))}
         </div>
       </div>
