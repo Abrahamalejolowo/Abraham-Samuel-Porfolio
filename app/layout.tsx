@@ -25,7 +25,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://abraham-dev.vercel.app'),
   title: {
-    default: "Abraham Samuel — Junior Software Developer",
+    default: "Abraham Samuel",
     template: "%s | Abraham Samuel",
   },
   description:
