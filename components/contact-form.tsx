@@ -1,74 +1,73 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { createPortal } from "react-dom"
-import { Send, X } from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { Send, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 export function ContactForm() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-  })
+  });
 
   // Ensure portal works properly
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   // Prevent background scroll when modal opens
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "auto"
-    }
-
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
-      document.body.style.overflow = "auto"
-    }
-  }, [isOpen])
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
+      });
+
+      const result = await response.json();
 
       if (response.ok) {
-        setSubmitted(true)
-        setFormData({ name: "", email: "", subject: "", message: "" })
+        setSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
 
         setTimeout(() => {
-          setSubmitted(false)
-          setIsOpen(false)
-        }, 2500)
+          setSubmitted(false);
+          setIsOpen(false);
+        }, 2500);
+      } else {
+        console.error("Failed to send email:", result.error);
+        alert(result.error || "Failed to send message.");
       }
     } catch (error) {
-      console.error("Error:", error)
+      console.error("Error sending message:", error);
+      alert("Something went wrong. Please try again later.");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <>
@@ -121,7 +120,7 @@ export function ContactForm() {
                         <Send className="h-6 w-6 text-primary" />
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        Message sent successfully 
+                        Message sent successfully
                       </p>
                     </div>
                   ) : (
@@ -195,5 +194,5 @@ export function ContactForm() {
           document.body
         )}
     </>
-  )
+  );
 }

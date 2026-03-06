@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 
     // 🔥 Send email using Resend
     await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>", // Change to your verified domain later
+      from: "Abraham Portfolio <onboarding@resend.dev>", // Change to your verified domain later
       to: "abrahamalejolowo@gmail.com",
       subject: `New Contact Form: ${subject}`,
       html: `
