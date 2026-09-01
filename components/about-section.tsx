@@ -1,10 +1,13 @@
 export function AboutSection() {
   return (
-    <section className="relative py-20 sm:py-2 overflow-hidden">
+    <section className="relative py-20 sm:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="max-w-7xl mx-auto space-y-8 animate-fade-in-up">
           {/* Header */}
           <div className="space-y-4">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
+              Background & Vision
+            </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-balance">
               About
               <span className="bg-gradient-to-l from-primary/50 to-accent bg-clip-text text-transparent"> Me</span>
@@ -14,19 +17,17 @@ export function AboutSection() {
           {/* Main content */}
           <div className="space-y-6 text-muted-foreground">
             <p className="text-lg leading-relaxed">
-              I'm Abraham Samuel, a junior software developer with 2 years of experience building scalable web applications. I started my journey with a curiosity for how things work, and that passion has evolved into a professional pursuit of creating high-quality digital solutions that solve real-world problems.
+              I'm <strong className="text-foreground">Abraham Samuel Alejolowo</strong>, a full-stack software engineer with a strong focus on building scalable web applications, secure backend APIs, and responsive user interfaces. My journey began with a curiosity for software architecture, which has grown into a dedicated drive to craft high-quality digital products.
             </p>
 
             <p className="text-base leading-relaxed">
-              My approach combines technical rigor with creative problem-solving. I specialize in React, TypeScript, and modern web technologies, with a growing interest in Web3 and blockchain development. I believe in writing elegant, efficient code that's not just functional, but maintainable and user-focused.
+              My technical core spans <strong className="text-foreground">Next.js, React, TypeScript, Node.js, Python and React Native</strong>, paired with databases like PostgreSQL and Supabase, and headless content management systems like Sanity CMS. From engineering payment integrations and escrow services to developing offline-ready web apps, I prioritize clean code, type safety, and optimal performance.
             </p>
 
             <p className="text-base leading-relaxed">
-              When I'm not coding, I'm exploring new technologies, contributing to open-source projects, or collaborating with teams on innovative ideas. I'm always eager to learn, improve my craft, and take on new challenges that push my boundaries.
+              When I'm not writing code, I'm exploring modern backend architecture, refactoring UI systems, or collaborating in agile environments. I'm always looking to refine my engineering craft and build intuitive solutions that make an impact.
             </p>
           </div>
-
-
         </div>
       </div>
 

@@ -4,7 +4,7 @@ export function generateWebsiteStructuredData(url: string) {
     '@type': 'WebSite',
     name: 'Abraham Samuel',
     description:
-      "Junior Software Developer with 2 years of experience building web applications with React, TypeScript, and Tailwind CSS.",
+      "Junior Software Developer with 3 years of experience building web applications with React, TypeScript, and Tailwind CSS.",
     url: url,
     author: {
       '@type': 'Person',

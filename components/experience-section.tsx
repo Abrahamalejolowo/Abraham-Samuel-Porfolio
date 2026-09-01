@@ -4,20 +4,33 @@ import { ChevronRight } from "lucide-react"
 
 const experiences = [
   {
+    role: "Software Engineer (Intern)",
+    company: "KETA SOLUTIONS LIMITED ('KetaPay')",
+    period: "Jul 2026 – Jan 2027",
+    location: "Hybrid / Nigeria",
+    description: "Participating in the Students Industrial Work Experience Scheme (SIWES) with the core Engineering team, developing scalable payment products, escrow APIs, and high-performance frontend interfaces.",
+    achievements: [
+      "Built, refactored, and tested features on core payment and escrow products using Next.js, TypeScript, and Tailwind CSS",
+      "Wired API application routes and integrated payment gateways (Paystack & Flutterwave)",
+      "Optimized dynamic content queries and refined database pipelines using Sanity CMS and Supabase",
+      "Participated in active sprint planning, peer code reviews, and UI component performance tuning"
+    ],
+    technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Sanity CMS", "Supabase", "REST APIs"]
+  },
+  {
     role: "Web developer Intern",
-    company: "Aristiec Technology,India",
+    company: "Aristiec Technology, India",
     period: "2025",
     location: "Remote",
-  description: "Worked on real-world web applications, contributing to frontend and backend development while gaining hands-on experience in scalable architecture and modern development practices.",
+    description: "Worked on real-world web applications, contributing to frontend and backend development while gaining hands-on experience in scalable architecture and modern development practices.",
     achievements: [
       "Built reusable UI components with React and TypeScript",
-  "Designed RESTful APIs using Node.js",
-  "Implemented secure authentication and database management with Firebase",
-  "Collaborated in an agile remote development environment"
-],
+      "Designed RESTful APIs using Node.js",
+      "Implemented secure authentication and database management with Firebase",
+      "Collaborated in an agile remote development environment"
+    ],
     technologies: ["React", "TypeScript", "Node.js", "Firebase", "Web3.js", "Solidity"]
   },
-
   {
     role: "Frontend developer Intern",
     company: "NAICTS, Student Representative Council (SRC), KWASU",
@@ -35,7 +48,7 @@ const experiences = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="relative py-0 sm:py-32 ">
+    <section id="experience" className="relative py-0 sm:py-32">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-40" />
 

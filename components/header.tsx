@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
-import { Github, Linkedin } from "lucide-react"
+import { Github, Linkedin, Code2 } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 import { ThemeChanger } from "./theme-changer"
 
@@ -12,7 +12,6 @@ const navItems = [
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
-  
 ]
 
 const socialLinks = [
@@ -56,15 +55,16 @@ export function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4">
         <nav className="flex items-center justify-between">
           <button onClick={() => scrollToSection("#home")} className="group flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
-            <div className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-primary/50 bg-primary/10 font-mono text-sm text-primary transition-all duration-400 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-primary/25">
-              <span className="glitch">{"💎"}</span>
-            </div>
-            <span className="font-mono text-sm tracking-tight">
-              EXPENSIVE
-              <span className="bg-gradient-to-l from-primary/50 to-accent bg-clip-text text-transparent font-semibold">
-                CODE
-              </span>
-            </span>
+            <div className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-primary/40 bg-primary/10 text-primary transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-md group-hover:shadow-primary/20">
+    <Code2 className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+  </div>
+  <span className="font-mono text-sm tracking-wider uppercase">
+    <span className="text-foreground font-semibold">Exp</span>
+    <span className="text-primary font-bold ml-1">/</span>
+    <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-extrabold ml-1">
+      Code
+    </span>
+  </span>
           </button>
 
           {/* Desktop Navigation */}

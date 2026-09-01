@@ -5,7 +5,7 @@ import { ContactForm } from "./contact-form"
 
 import { useEffect, useState } from "react"
 
-const roles = ["Software Developer", "Full stack Developer", "Backend Engineer"]
+const roles = ["Jr Software Engineer", "Full stack Developer", "Backend Engineer"]
 
 export function HeroSection() {
   const [currentRole, setCurrentRole] = useState(0)
@@ -58,7 +58,7 @@ export function HeroSection() {
             </div>
 
             <p className="max-w-lg text-base sm:text-lg leading-relaxed text-muted-foreground animate-fade-in-up stagger-2">
-              Junior Software Developer with 2 years of experience building web applications with React, TypeScript, and Tailwind CSS. Passionate about creating high-performance, user-friendly solutions and exploring emerging technologies like Web3.
+              Junior Software Developer with 3 years of experience building web applications with React, TypeScript, and Tailwind CSS. Passionate about creating high-performance, user-friendly solutions and exploring emerging technologies like Web3.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 ">
@@ -111,7 +111,7 @@ export function HeroSection() {
 │  Junior Software Developer           │
 │                                      │
 │   > Location: Remote        │
-│   > Experience: 2 years              │
+│   > Experience: 3 years              │
 │   > Projects : 15+              │
 │   > Status: actively building        │
 │                                      │

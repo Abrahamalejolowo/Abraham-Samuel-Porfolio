@@ -1,31 +1,103 @@
-import { Code2, Database, Zap, Layers } from "lucide-react"
+import { Code2, Database, Zap, Layers, Cpu, CreditCard } from "lucide-react"
+import {
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiNextdotjs,
+  SiJavascript,
+  SiNodedotjs,
+  SiFirebase,
+  SiExpress,
+  SiPython,
+  SiSolidity,
+  SiEthereum,
+  SiGit,
+  SiGithub,
+  SiVercel,
+  SiFigma,
+  SiSanity,
+  SiSupabase,
+  SiPostgresql,
+  SiCplusplus,
+} from "react-icons/si"
+import { TbApi } from "react-icons/tb"
+import { VscVscode } from "react-icons/vsc"
+import { ComponentType } from "react"
 
-const skillCategories = [
+interface SkillItem {
+  name: string
+  icon: ComponentType<{ className?: string }>
+}
+
+interface SkillCategory {
+  category: string
+  icon: ComponentType<{ className?: string }>
+  skills: SkillItem[]
+}
+
+const skillCategories: SkillCategory[] = [
   {
-    category: "Frontend",
+    category: "Frontend Development",
     icon: Code2,
-    skills: ["React" ,"React Native", "TypeScript", "Tailwind CSS", "Next.js", "JavaScript", "HTML/CSS"],
+    skills: [
+      { name: "React", icon: SiReact },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "JavaScript (ES6+)", icon: SiJavascript },
+      { name: "React Native", icon: SiReact },
+    ],
   },
   {
-    category: "Backend",
+    category: "Backend & Databases",
     icon: Database,
-    skills: ["Node.js", "Firebase", "REST APIs", "Express.js","Python"],
+    skills: [
+      { name: "Node.js", icon: SiNodedotjs },
+      { name: "Express.js", icon: SiExpress },
+      { name: "Supabase", icon: SiSupabase },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "Firebase", icon: SiFirebase },
+      { name: "REST APIs", icon: TbApi },
+    ],
   },
   {
-    category: "Web3 & Blockchain",
-    icon: Zap,
-    skills: ["Web3.js", "Smart Contracts", "Ethereum", "Solidity", "NFT Development"],
+    category: "CMS & E-Commerce Integration",
+    icon: CreditCard,
+    skills: [
+      { name: "Sanity CMS", icon: SiSanity },
+      { name: "GROQ Queries", icon: Code2 },
+      { name: "Paystack API", icon: CreditCard },
+      { name: "Flutterwave API", icon: CreditCard },
+      { name: "Escrow Workflows", icon: Layers },
+    ],
   },
   {
-    category: "Tools & DevOps",
+    category: "Systems & Web3 Development",
+    icon: Cpu,
+    skills: [
+      { name: "C++", icon: SiCplusplus },
+      { name: "Solidity", icon: SiSolidity },
+      { name: "Ethereum", icon: SiEthereum },
+      { name: "Web3.js", icon: SiEthereum },
+      { name: "Smart Contracts", icon: Zap },
+    ],
+  },
+  {
+    category: "Tools & Workflow",
     icon: Layers,
-    skills: ["Git", "GitHub", "Vercel", "VS Code", "Figma"],
+    skills: [
+      { name: "Git", icon: SiGit },
+      { name: "GitHub", icon: SiGithub },
+      { name: "Vercel", icon: SiVercel },
+      { name: "VS Code", icon: VscVscode },
+      { name: "Figma", icon: SiFigma },
+    ],
   },
 ]
 
 export function SkillsSection() {
   return (
-    <section className="relative px-4 sm:px-6 py-10 sm:py-15 bg-gradient-to-b from-background to-background/80">
+    <section className="relative px-4 sm:px-6 py-10 sm:py-16 bg-gradient-to-b from-background to-background/80">
       <div className="mx-auto max-w-7xl">
         <div className="space-y-4 sm:space-y-6 mb-12 animate-fade-in-up">
           <p className="font-mono text-xs uppercase tracking-[0.25em] sm:tracking-[0.35em] text-primary">
@@ -36,9 +108,9 @@ export function SkillsSection() {
           </h2>
         </div>
 
-        <div className="grid gap-8 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, index) => {
-            const Icon = category.icon
+            const CategoryIcon = category.icon
             return (
               <div
                 key={category.category}
@@ -47,21 +119,25 @@ export function SkillsSection() {
               >
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative space-y-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between border-b border-border/40 pb-3">
                     <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
                       {category.category}
                     </h3>
-                    <Icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
+                    <CategoryIcon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                   </div>
-                  <div className="space-y-2">
-                    {category.skills.map((skill) => (
-                      <div
-                        key={skill}
-                        className="inline-block mr-2 mb-2 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-xs font-medium text-primary transition-all duration-200 hover:bg-primary/20 hover:border-primary/40"
-                      >
-                        {skill}
-                      </div>
-                    ))}
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {category.skills.map((skill) => {
+                      const SkillIcon = skill.icon
+                      return (
+                        <div
+                          key={skill.name}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-xs font-medium text-primary transition-all duration-200 hover:bg-primary/20 hover:border-primary/40"
+                        >
+                          <SkillIcon className="h-3.5 w-3.5 shrink-0 text-primary/80" />
+                          <span>{skill.name}</span>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
