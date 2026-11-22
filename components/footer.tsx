@@ -1,9 +1,10 @@
-import { Github, Linkedin, Mail, ExternalLink, Heart } from "lucide-react"
+import {   Mail, ExternalLink, Heart } from "lucide-react"
 import { ContactForm } from "./contact-form"
+import { FaGithub,FaLinkedin, } from "react-icons/fa"
 
 const socialLinks = [
-  { label: "GitHub", href: "https://github.com/Abrahamalejolowo", handle: "@Abrahamalejolowo", icon: Github },
-  { label: "LinkedIn", href: "https://linkedin.com/in/abraham-alejolowo-b7ab97319", handle: "/in/abraham-alejolowo", icon: Linkedin },
+  { label: "GitHub", href: "https://github.com/Abrahamalejolowo", handle: "@Abrahamalejolowo", icon: FaGithub },
+  { label: "LinkedIn", href: "https://linkedin.com/in/abraham-alejolowo-b7ab97319", handle: "/in/abraham-alejolowo", icon: FaLinkedin },
   { label: "Email", href: "mailto:abrahamalejolowo@gmail.com", handle: "abrahamalejolowo@gmail.com", icon: Mail },
 ]
 

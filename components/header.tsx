@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
-import { Github, Linkedin, Code2 } from "lucide-react"
+import { Code2 } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 import { ThemeChanger } from "./theme-changer"
+import { FaXTwitter } from "react-icons/fa6"
+import { FaGithub,FaLinkedin} from "react-icons/fa"
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -15,8 +17,9 @@ const navItems = [
 ]
 
 const socialLinks = [
-  { label: "GitHub", href: "https://github.com/Abrahamalejolowo", icon: Github },
-  { label: "LinkedIn", href: "https://linkedin.com/in/abraham-alejolowo-b7ab97319", icon: Linkedin },
+  { label: "GitHub", href: "https://github.com/Abrahamalejolowo", icon: FaGithub },
+  { label: "X", href: "https://x.com/AAlejolowo76244", icon: FaXTwitter },
+  { label: "LinkedIn", href: "https://linkedin.com/in/abraham-alejolowo-b7ab97319", icon: FaLinkedin },
 ]
 
 export function Header() {

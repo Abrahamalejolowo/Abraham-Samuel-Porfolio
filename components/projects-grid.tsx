@@ -1,10 +1,21 @@
+
 "use client"
 
 import { useState, useEffect } from "react"
 import Image, { StaticImageData } from "next/image"
 import { cn } from "@/lib/utils"
-import { Github, Star, GitFork, ExternalLink, Sparkles, ChevronDown, ChevronUp, Server } from "lucide-react"
+import {
+
+  ExternalLink,
+  Sparkles,
+  ChevronDown,
+  ChevronUp,
+  Server,
+} from "lucide-react"
+import { FaGithub } from "react-icons/fa"
+
 import Misa from "@/public/Misa.png"
+import skillbridge from "@/public/skillbridge.jpeg"
 import Dashboard from "@/public/Dashboard.png"
 import Aristiec from "@/public/Aristiec.png"
 import Nft from "@/public/Nft.png"
@@ -22,8 +33,6 @@ interface Project {
   tags: string[]
   status: ProjectStatus
   year: string
-  stars: number
-  forks: number
   url: string
   homepage?: string
   featured?: boolean
@@ -32,122 +41,163 @@ interface Project {
 }
 
 const projects: Project[] = [
-    {
-    id: "smart-learn",
-    title: "Smart Learn Platform",
+  {
+    id: "minmart",
+    title: "Minmart – E-Commerce Marketplace",
     description:
-      "An offline interactive educational platform providing structured learning modules, resource tracking, and dynamic content queries via CMS.",
-    image: smartlearn,
-    tags: ["Next.js", "React", "TypeScript", "Sanity CMS", "Tailwind"],
-    status: "Coming soon",
+      "Building an e-commerce marketplace focused on Nigerian-made products and local brands. Minmart is designed to connect customers with different vendors through a unified shopping experience. The platform includes product discovery, brand collections, shopping cart management, customer authentication, and a location-aware approach to product pricing and availability. Currently developing the platform with plans for integrated payment processing and a complete order management experience.",
+    image: minmart,
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "MongoDB",
+      "NextAuth",
+      "Paystack"
+    ],
+    status: "shipped",
     year: "2026",
-    stars: 16,
-    forks: 3,
+    url: "https://github.com/Abrahamalejolowo/Minimart",
+    homepage: "https://minmarts.com",
+    featured: true,
+    highlight: true,
+  },
+    {
+    id: "aristiec",
+    title: "Aristiec – Company Website",
+    description:
+      "Contributed to the development of a professional company website, focusing on responsive layouts, reusable interface components, and a consistent user experience. Worked on frontend implementation and interface improvements to ensure the website was accessible and functional across different screen sizes.",
+    image: Aristiec,
+    tags: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "Figma",
+      "Responsive Design"
+    ],
+    status: "shipped",
+    year: "2025",
     url: "https://github.com/Abrahamalejolowo",
+    homepage: "https://aristiec.com",
+  },
+  {
+    id: "skillbridge",
+    title: "SkillBridge – Student Opportunity Platform",
+    description:
+      "Building a student-focused platform that makes it easier to discover career opportunities, develop professional skills, and manage applications in one place. SkillBridge brings together internships, scholarships, grants, and other opportunities through a centralized student workspace. Features include personalized student profiles, opportunity discovery, saved opportunities, application tracking, an AI-powered career assistant, and a premium subscription experience designed to unlock additional AI capabilities.",
+    image: skillbridge,
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Drizzle ORM",
+      "Neon",
+      "Better Auth",
+      "Gemini API",
+      "Tailwind CSS"
+    ],
+    status: "shipped",
+    year: "2026",
+    url: "https://github.com/Abrahamalejolowo/skillbridge",
+    homepage: "https://skillbridge-umber-nu.vercel.app",
     featured: true,
     highlight: true,
   },
   {
-    id: "execora",
-    title: "EXECORA - Autonomous AI Task Helper",
+    id: "smart-learn",
+    title: "SmartLearn – Offline AI Learning Platform",
     description:
-      "Digital workflow helper for automated task execution, document analysis, and process status tracking.",
-    image: execore,
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "AI Prompt Lab", "REST API"],
-    status: "in-progress",
+      "An AI-powered educational platform designed to make quality learning accessible even in areas with unreliable internet connectivity. SmartLearn combines an AI tutor with an offline-first learning experience, allowing students to access learning resources, practice through interactive quizzes, create flashcards, track academic progress, and organize their study schedules. The application also explores PWA installation, local data persistence, and personalized learning experiences.",
+    image: smartlearn,
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Gemini API",
+      "IndexedDB",
+      "PWA",
+      "Tailwind CSS"
+    ],
+    status: "Coming soon",
     year: "2026",
-    stars: 32,
-    forks: 8,
+    url: "https://github.com/Abrahamalejolowo",
+    featured: true,
+  },
+  {
+    id: "execora",
+    title: "EXECORA – Autonomous AI Task Assistant",
+    description:
+      "Developing an AI-powered workflow assistant designed to simplify repetitive digital tasks and improve productivity. The platform explores AI-driven task execution, document analysis, intelligent instructions, and workflow status tracking through an interactive web interface. It focuses on making complex digital workflows easier to manage through AI-assisted automation.",
+    image: execore,
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "AI Integration",
+      "REST APIs"
+    ],
+    status: "shipped",
+    year: "2026",
     url: "https://github.com/Abrahamalejolowo",
     homepage: "https://execora-umber.vercel.app/",
     featured: true,
   },
   {
-    id: "backend",
-    title: "Escrow & Payment API",
+    id: "gym-management",
+    title: "Gym Management SaaS",
     description:
-      "Backend microservice architecture powering secure escrow transactions, webhooks, and payment settlement gateways.",
-    tags: ["Node.js", "Express.js", "Supabase", "PostgreSQL", "Paystack", "Flutterwave"],
-    status: "shipped",
-    year: "2026",
-    stars: 21,
-    forks: 5,
-    url: "https://github.com/Abrahamalejolowo",
-    featured: true,
-    isBackendOnly: true,
-  },
-  {
-    id: "minmart",
-    title: "Minmart E-Commerce & Vendor Platform",
-    description:
-      "Multi-vendor marketplace featuring product listings, fragrance vendor onboarding, responsive layouts, and integrated mobile payment flows.",
-    image: minmart,
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Paystack", "Flutterwave"],
+      "Developing a multi-tenant gym management platform that helps fitness businesses manage their daily operations from a centralized dashboard. The system supports gym-specific accounts, member registration, membership plans, payment tracking, attendance management, and operational analytics. It is designed around a shared SaaS architecture where different gyms can manage their own members, subscriptions, and business information independently.",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "QR Attendance"
+    ],
     status: "in-progress",
     year: "2026",
-    stars: 24,
-    forks: 6,
-    url: "https://github.com/Abrahamalejolowo/Minmart",
-    homepage: "https://minmart.netlify.app/",
-    featured: true,
-  },
-  {
-    id: "auth-microservice",
-    title: "JWT & OAuth Microservice Engine",
-    description:
-      "Stateless authentication backend service handling user sessions, token rotation, rate-limiting, and RBAC authorization middleware.",
-    tags: ["Node.js", "Express", "Firebase Auth", "PostgreSQL", "JWT"],
-    status: "shipped",
-    year: "2025",
-    stars: 19,
-    forks: 4,
     url: "https://github.com/Abrahamalejolowo",
-    isBackendOnly: true,
+    featured: true,
   },
   {
     id: "masa",
-    title: "MASA Web Application",
+    title: "MASA – E-Commerce Web Application",
     description:
-      "E-commerce platform for skincare and perfume products with advanced filtering, search functionality, and seamless payment integration.",
+      "Developed an e-commerce experience for skincare and fragrance products, focusing on product discovery and a smooth shopping experience. Implemented responsive product interfaces, search and filtering functionality, product presentation, and API-connected application features to help customers browse and interact with products.",
     image: Misa,
-    tags: ["React", "Tailwind CSS", "REST APIs", "Payment Gateway"],
+    tags: [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "REST APIs",
+      "Payment Integration"
+    ],
     status: "shipped",
     year: "2025",
-    stars: 12,
-    forks: 2,
     url: "https://github.com/Abrahamalejolowo",
   },
   {
     id: "nft-marketplace",
     title: "NFT Marketplace",
     description:
-      "Decentralized NFT trading platform with minting, smart contracts, and crypto payments. Implemented lazy minting to reduce gas fees.",
+      "Explored decentralized marketplace development through an NFT platform focused on digital asset creation and trading. The project involved smart contract concepts, NFT minting workflows, Ethereum integration, and blockchain-based transactions, with an interest in reducing transaction costs through lazy minting approaches.",
     image: Nft,
-    tags: ["Web3.js", "Ethereum", "Smart Contracts", "Firebase"],
-    status: "Coming soon",
-    year: "2024",
-    stars: 15,
-    forks: 4,
-    url: "https://github.com/Abrahamalejolowo",
-  },
-  {
-    id: "aristiec",
-    title: "Aristiec Company Website",
-    description:
-      "SEO-optimized company website focused on UI/UX, accessibility, and cross-browser compatibility.",
-    image: Aristiec,
-    tags: ["React", "Tailwind", "SEO", "Figma"],
+    tags: [
+      "Web3.js",
+      "Ethereum",
+      "Solidity",
+      "Smart Contracts",
+      "Firebase"
+    ],
     status: "shipped",
-    year: "2025",
-    stars: 8,
-    forks: 2,
+    year: "2024",
     url: "https://github.com/Abrahamalejolowo",
-    homepage: "https://aristiec-web-phi.vercel.app/",
   },
+
 ]
 
 export function ProjectsGrid() {
-  const [activeFilter] = useState<ProjectStatus | "all">("all")
   const [showAllMobile, setShowAllMobile] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -155,39 +205,46 @@ export function ProjectsGrid() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640)
     }
+
     checkMobile()
     window.addEventListener("resize", checkMobile)
+
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
-  const filteredProjects =
-    activeFilter === "all"
-      ? projects
-      : projects.filter((p) => p.status === activeFilter)
-
-  // Cap visible projects to 4 on mobile unless expanded
-  const visibleProjects = isMobile && !showAllMobile 
-    ? filteredProjects.slice(0, 4) 
-    : filteredProjects
+  const visibleProjects =
+    isMobile && !showAllMobile
+      ? projects.slice(0, 4)
+      : projects
 
   return (
     <section id="projects" className="px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-14">
+
+        {/* Section Header */}
+        <div className="mb-14 space-y-4">
           <p className="font-mono text-xs uppercase tracking-[0.35em] text-primary">
-            Artifacts
+            Selected Work & Experiments
           </p>
+
           <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">
-            Featured Projects
+            Projects I've Built
           </h2>
+
+          <p className="max-w-2xl text-muted-foreground leading-relaxed">
+            A collection of products, applications, and engineering
+            experiments I've worked on, from e-commerce and fintech
+            experiences to AI-powered platforms and SaaS solutions.
+          </p>
         </div>
 
+        {/* Projects Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visibleProjects.map((project, index) => (
             <div
               key={project.id}
               className={cn(
-                "group relative overflow-hidden rounded-xl border bg-card/50 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg flex flex-col justify-between",
+                "group relative overflow-hidden rounded-xl border border-border/60 bg-card/50 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg flex flex-col justify-between animate-fade-in-up",
                 project.highlight && "sm:col-span-2"
               )}
               style={{ animationDelay: `${index * 100}ms` }}
@@ -196,11 +253,11 @@ export function ProjectsGrid() {
                 {project.highlight && (
                   <div className="absolute left-4 top-4 z-10 flex items-center gap-2 rounded-full bg-primary/10 backdrop-blur-md px-3 py-1 text-xs font-medium text-primary border border-primary/20">
                     <Sparkles className="h-3 w-3" />
-                    Featured
+                    Featured Project
                   </div>
                 )}
 
-                {/* Render screenshot image or stylized Backend Terminal card */}
+                {/* Project Image / Backend Preview */}
                 {project.isBackendOnly ? (
                   <div className="mb-5 flex h-48 w-full flex-col justify-between rounded-lg border border-primary/30 bg-secondary/80 p-4 font-mono text-xs text-primary/90">
                     <div className="flex items-center justify-between border-b border-border/40 pb-2">
@@ -208,18 +265,25 @@ export function ProjectsGrid() {
                         <Server className="h-4 w-4 text-primary" />
                         backend_service.api
                       </span>
+
                       <span className="rounded bg-primary/20 px-1.5 py-0.5 text-[10px] text-primary">
-                        REST / Microservice
+                        REST API
                       </span>
                     </div>
+
                     <div className="space-y-1.5 text-muted-foreground text-[11px]">
-                      <p className="text-primary">{`> GET /api/v1/escrow/status`}</p>
-                      <p>{`200 OK - 42ms`}</p>
-                      <p className="text-primary">{`> POST /api/v1/payments/verify`}</p>
-                      <p>{`Status: Webhook Verified`}</p>
+                      <p className="text-primary">
+                        {`> POST /api/payments/verify`}
+                      </p>
+                      <p>{`Payment verification workflow`}</p>
+                      <p className="text-primary">
+                        {`> GET /api/transactions/status`}
+                      </p>
+                      <p>{`Transaction status lookup`}</p>
                     </div>
+
                     <div className="text-[10px] text-muted-foreground">
-                      // Built for security & high concurrency
+                      // API workflow demonstration
                     </div>
                   </div>
                 ) : (
@@ -236,10 +300,12 @@ export function ProjectsGrid() {
                   )
                 )}
 
-                <div className="flex items-center justify-between mb-2">
+                {/* Project Status */}
+                <div className="flex items-center justify-between mb-3">
                   <p className="text-xs font-mono text-muted-foreground">
                     {project.year}
                   </p>
+
                   <span
                     className={cn(
                       "text-[10px] font-mono px-2 py-0.5 rounded-full uppercase tracking-wider",
@@ -254,47 +320,41 @@ export function ProjectsGrid() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-semibold mb-2">
+                {/* Title */}
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
 
-                <p className="text-sm text-muted-foreground mb-4">
+                {/* Description */}
+                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
                   {project.description}
                 </p>
               </div>
 
+              {/* Project Footer */}
               <div>
-                <div className="flex gap-4 text-xs font-mono text-muted-foreground mb-4">
-                  <span className="flex items-center gap-1">
-                    <Star className="h-3 w-3 text-primary" />
-                    {project.stars}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <GitFork className="h-3 w-3 text-primary" />
-                    {project.forks}
-                  </span>
-                </div>
-
+                {/* Technologies */}
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-md border border-border/60 bg-secondary/40 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+                      className="rounded-md border border-border/60 bg-secondary/40 px-2 py-1 font-mono text-[11px] text-muted-foreground"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex gap-4 text-xs font-mono pt-3 border-t border-border/40">
+                {/* Project Links */}
+                <div className="flex gap-5 text-xs font-mono pt-4 border-t border-border/40">
                   <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
                   >
-                    <Github className="h-4 w-4" />
-                    Source
+                    <FaGithub className="h-4 w-4" />
+                    Source Code
                   </a>
 
                   {project.homepage && (
@@ -305,7 +365,7 @@ export function ProjectsGrid() {
                       className="flex items-center gap-1.5 text-primary hover:text-foreground transition-colors"
                     >
                       <ExternalLink className="h-4 w-4" />
-                      Live
+                      Live Preview
                     </a>
                   )}
                 </div>
@@ -315,7 +375,7 @@ export function ProjectsGrid() {
         </div>
 
         {/* Mobile View Toggle */}
-        {isMobile && filteredProjects.length > 4 && (
+        {isMobile && projects.length > 4 && (
           <div className="mt-8 flex justify-center">
             <button
               onClick={() => setShowAllMobile(!showAllMobile)}
@@ -323,11 +383,13 @@ export function ProjectsGrid() {
             >
               {showAllMobile ? (
                 <>
-                  Show Less <ChevronUp className="h-4 w-4" />
+                  Show Less
+                  <ChevronUp className="h-4 w-4" />
                 </>
               ) : (
                 <>
-                  View All Projects ({filteredProjects.length}) <ChevronDown className="h-4 w-4" />
+                  View All Projects ({projects.length})
+                  <ChevronDown className="h-4 w-4" />
                 </>
               )}
             </button>

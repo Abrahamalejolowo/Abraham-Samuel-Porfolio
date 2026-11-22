@@ -1,4 +1,5 @@
-import { Code2, Database, Zap, Layers, Cpu, CreditCard } from "lucide-react"
+
+import { Code2, Database, Zap, Layers, Cpu, CreditCard, TestTube2, BrainCircuit } from "lucide-react"
 import {
   SiReact,
   SiTypescript,
@@ -19,6 +20,9 @@ import {
   SiSupabase,
   SiPostgresql,
   SiCplusplus,
+  SiMongodb,
+  SiExpo,
+  SiPrisma,
 } from "react-icons/si"
 import { TbApi } from "react-icons/tb"
 import { VscVscode } from "react-icons/vsc"
@@ -42,10 +46,11 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: "React", icon: SiReact },
       { name: "Next.js", icon: SiNextdotjs },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
-      { name: "JavaScript (ES6+)", icon: SiJavascript },
       { name: "React Native", icon: SiReact },
+      { name: "Expo", icon: SiExpo },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "JavaScript (ES6+)", icon: SiJavascript },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
   },
   {
@@ -54,43 +59,64 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Express.js", icon: SiExpress },
-      { name: "Supabase", icon: SiSupabase },
+      { name: "MongoDB", icon: SiMongodb },
       { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "Supabase", icon: SiSupabase },
       { name: "Firebase", icon: SiFirebase },
+      { name: "Neon", icon: Database },
+      { name: "Drizzle ORM", icon: SiPrisma },
       { name: "REST APIs", icon: TbApi },
     ],
   },
   {
-    category: "CMS & E-Commerce Integration",
+    category: "Payments & Fintech",
     icon: CreditCard,
     skills: [
-      { name: "Sanity CMS", icon: SiSanity },
-      { name: "GROQ Queries", icon: Code2 },
-      { name: "Paystack API", icon: CreditCard },
-      { name: "Flutterwave API", icon: CreditCard },
+      { name: "Paystack", icon: CreditCard },
+      { name: "Flutterwave", icon: CreditCard },
+      { name: "Payment Integration", icon: Zap },
+      { name: "Webhooks", icon: TbApi },
       { name: "Escrow Workflows", icon: Layers },
+      { name: "Transaction Processing", icon: Database },
     ],
   },
   {
-    category: "Systems & Web3 Development",
-    icon: Cpu,
+    category: "CMS & Authentication",
+    icon: Layers,
     skills: [
+      { name: "Sanity CMS", icon: SiSanity },
+      { name: "GROQ Queries", icon: Code2 },
+      { name: "Better Auth", icon: Code2 },
+      { name: "JWT Authentication", icon: Code2 },
+      { name: "API Integration", icon: TbApi },
+    ],
+  },
+  {
+    category: "AI & Emerging Technologies",
+    icon: BrainCircuit,
+    skills: [
+      { name: "Gemini API", icon: BrainCircuit },
+      { name: "AI Integration", icon: Zap },
+      { name: "Prompt Engineering", icon: BrainCircuit },
+      { name: "Python", icon: SiPython },
       { name: "C++", icon: SiCplusplus },
       { name: "Solidity", icon: SiSolidity },
       { name: "Ethereum", icon: SiEthereum },
       { name: "Web3.js", icon: SiEthereum },
-      { name: "Smart Contracts", icon: Zap },
     ],
   },
   {
-    category: "Tools & Workflow",
-    icon: Layers,
+    category: "Testing & Developer Tools",
+    icon: TestTube2,
     skills: [
       { name: "Git", icon: SiGit },
       { name: "GitHub", icon: SiGithub },
-      { name: "Vercel", icon: SiVercel },
       { name: "VS Code", icon: VscVscode },
+      { name: "Vercel", icon: SiVercel },
       { name: "Figma", icon: SiFigma },
+      { name: "Postman", icon: TbApi },
+      { name: "Mobile App Testing", icon: TestTube2 },
+      { name: "Quality Assurance", icon: TestTube2 },
     ],
   },
 ]
@@ -108,9 +134,10 @@ export function SkillsSection() {
           </h2>
         </div>
 
-        <div className="grid gap-6 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, index) => {
             const CategoryIcon = category.icon
+
             return (
               <div
                 key={category.category}
@@ -118,6 +145,7 @@ export function SkillsSection() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                 <div className="relative space-y-4">
                   <div className="flex items-center justify-between border-b border-border/40 pb-3">
                     <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
@@ -125,9 +153,11 @@ export function SkillsSection() {
                     </h3>
                     <CategoryIcon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" />
                   </div>
+
                   <div className="flex flex-wrap gap-2 pt-1">
                     {category.skills.map((skill) => {
                       const SkillIcon = skill.icon
+
                       return (
                         <div
                           key={skill.name}
