@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Abraham Samuel",
   },
   description:
-    "Junior Software Developer with 2 years of experience building web applications with React, TypeScript, and Tailwind CSS.",
+    "Software Developer | Full-Stack Engineer | Product Builder | React, Node.js, Web3 Enthusiast",
   authors: [
     {
       name: "Abraham Samuel Alejolowo",

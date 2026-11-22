@@ -124,12 +124,11 @@ export function HeroSection() {
 │  ABRAHAM SAMUEL ALEJOLOWO            │
 │  Software Engineer                   │
 │                                      │
-│  > Currently: KetaPay                │
-│  > Projects: 8                       │
+│  > Projects: 30+                     │
 │  > Focus: Building digital products  │
 │  > Status: Actively building         │
 │                                      │
-│                         │
+│                                      │
 │  SPECIALIZATION                      │
 │  ├── Web Applications                │
 │  ├── Fintech & Payments              │
